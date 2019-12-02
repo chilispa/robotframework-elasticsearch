@@ -1,5 +1,6 @@
 import pathlib
 from setuptools import setup
+from RobotFrameworkElasticSearchLibrary import __version__
 
 # The directory containing this file
 HERE = pathlib.Path(__file__).parent
@@ -13,12 +14,12 @@ with open('requirements.txt') as f:
 # This call to setup() does all the work
 setup(
     name="RobotFrameworkElasticSearchLibrary",
-    version="0.0.1",
+    version=__version__,
     description="Robot Framework ElasticSearch library.",
     long_description=README,
     long_description_content_type="text/markdown",
     url="https://github.com/gianpaolocaprara/robotframework-elasticsearch",
-    download_url = '',
+    download_url = f'https://github.com/gianpaolocaprara/robotframework-elasticsearch/archive/{__version__}.tar.gz',
     author="Gianpaolo Caprara",
     author_email="gianpaolo.caprara@gmail.com",
     license="MIT",
