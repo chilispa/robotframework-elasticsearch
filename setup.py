@@ -8,8 +8,10 @@ HERE = pathlib.Path(__file__).parent
 # The text of the README file
 README = (HERE / "README.md").read_text()
 
-with open('requirements.txt') as f:
-    requirements = f.read().splitlines()
+INSTALL_REQUIRES = [
+    'robotframework;python_version=="3.1.2"',
+    'elasticsearch;python_version=="6.4.0"'
+]
 
 # This call to setup() does all the work
 setup(
@@ -32,5 +34,5 @@ setup(
     ],
     packages=["RobotFrameworkElasticSearchLibrary"],
     include_package_data=True,
-    install_requires=requirements,
+    install_requires=INSTALL_REQUIRES,
 )
