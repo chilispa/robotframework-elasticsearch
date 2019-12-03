@@ -1,6 +1,14 @@
 import pathlib
+from distutils import dirname
 from setuptools import setup
-from RobotFrameworkElasticSearchLibrary import __version__
+import os
+
+
+version_file = os.path.join(dirname(os.path.abspath(__file__)), 'RobotFrameworkElasticSearchLibrary', 'version.py')
+
+with open(version_file) as file:
+    code = compile(file.read(), version_file, 'exec')
+    exec(code)
 
 # The directory containing this file
 HERE = pathlib.Path(__file__).parent
