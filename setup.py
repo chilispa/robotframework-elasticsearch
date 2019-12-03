@@ -17,8 +17,8 @@ HERE = pathlib.Path(__file__).parent
 README = (HERE / "README.md").read_text()
 
 INSTALL_REQUIRES = [
-    'robotframework;python_version=="3.1.2"',
-    'elasticsearch;python_version=="6.4.0"'
+    'robotframework==3.1.2',
+    'elasticsearch==6.4.0'
 ]
 
 # This call to setup() does all the work
