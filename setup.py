@@ -1,39 +1,43 @@
-import pathlib
-from distutils import dirname
+from os.path import dirname
 from setuptools import setup
+
 import os
 
+try:
+    # for pip >= 10
+    from pip._internal.req import parse_requirements
+except ImportError:
+    # for pip <= 9.0.3
+    from pip.req import parse_requirements
 
-version_file = os.path.join(dirname(os.path.abspath(__file__)), 'RobotFrameworkElasticSearchLibrary', 'version.py')
+
+def load_requirements(fname):
+    reqs = parse_requirements(fname, session="test")
+    return [str(ir.req) for ir in reqs]
+
+
+version_file = os.path.join(dirname(os.path.abspath(__file__)), 'src', 'RobotFrameworkElasticSearchLibrary', 'version.py')
 
 with open(version_file) as file:
     code = compile(file.read(), version_file, 'exec')
     exec(code)
 
 # The directory containing this file
-HERE = pathlib.Path(__file__).parent
-
-# The text of the README file
-README = (HERE / "README.md").read_text()
-
-INSTALL_REQUIRES = [
-    'robotframework==3.1.2',
-    'elasticsearch==6.4.0'
-]
+with open(os.path.join(os.path.dirname(__file__), "README.md")) as r_file:
+    readme = r_file.read()
 
 # This call to setup() does all the work
 setup(
     name="RobotFrameworkElasticSearchLibrary",
     version=__version__,
     description="Robot Framework ElasticSearch library.",
-    long_description=README,
+    long_description=readme,
     long_description_content_type="text/markdown",
     url="https://github.com/gianpaolocaprara/robotframework-elasticsearch",
-    download_url = f'https://github.com/gianpaolocaprara/robotframework-elasticsearch/archive/{__version__}.tar.gz',
     author="Gianpaolo Caprara",
     author_email="gianpaolo.caprara@gmail.com",
     license="MIT",
-    keywords = ['ROBOTFRAMEWORK', 'ELASTICSEARCH'],
+    keywords=['ROBOTFRAMEWORK', 'ELASTICSEARCH'],
     classifiers=[
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3",
@@ -41,6 +45,7 @@ setup(
         "Programming Language :: Python :: 3.7",
     ],
     packages=["RobotFrameworkElasticSearchLibrary"],
+    package_dir={'': 'src'},
     include_package_data=True,
-    install_requires=INSTALL_REQUIRES,
+    install_requires=load_requirements("requirements/install.txt"),
 )
