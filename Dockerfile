@@ -1,8 +1,8 @@
-FROM python:3.7
+FROM python:3.7.2-alpine
 
 # install dependencies
-RUN apt update && \
-    apt add --virtual build-deps gcc python-dev musl-dev
+RUN apk update && \
+    apk add --virtual build-deps gcc python-dev musl-dev
 
 # set working directory
 WORKDIR /app
