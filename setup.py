@@ -45,6 +45,7 @@ setup(
         "Programming Language :: Python :: 3.7",
     ],
     packages=["RobotFrameworkElasticSearchLibrary"],
+    package_data={'RobotFrameworkElasticSearchLibrary': ['tests/*.txt']},
     package_dir={'': 'src'},
     include_package_data=True,
     install_requires=load_requirements("requirements/install.txt"),
