@@ -1,18 +1,15 @@
-language: python
-
-python:
-  - "2.7"
-  - "3.4"
-  - "3.5"
-  - "3.6"
-  - "3.6-dev"
-  - "3.7-dev"
-  - "nightly"
-
 sudo: required
 
 services:
   - docker
+
+matrix:
+- PYTHON_VERSION=2.7
+- PYTHON_VERSION=3.4
+- PYTHON_VERSION=3.5
+- PYTHON_VERSION=3.6
+- PYTHON_VERSION=3.7
+
 
 env:
   DOCKER_COMPOSE_VERSION: 1.25.0
@@ -22,6 +19,9 @@ before_install:
   - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
+
+install:
+- sed -e 's/${PYTHON_VERSION}/'${PYTHON_VERSION}/g -e  > Dockerfile
 
 before_script:
   - docker-compose up -d --build
