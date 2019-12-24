@@ -21,7 +21,7 @@ before_install:
   - sudo mv docker-compose /usr/local/bin
 
 install:
-- sed -e 's/${PYTHON_VERSION}/'${PYTHON_VERSION}/g -e  > Dockerfile
+- sed -e 's/${PYTHON_VERSION}/'${PYTHON_VERSION}/g Dockerfile.tmpl  > Dockerfile
 
 before_script:
   - docker-compose up -d --build
