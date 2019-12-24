@@ -5,20 +5,21 @@ RUN apk update && \
     apk add --virtual build-deps gcc python-dev musl-dev
 
 # set working directory
-WORKDIR /usr/src/app
+WORKDIR /app
 
 # add and install requirements
-COPY ./requirements/install.txt /usr/src/app/requirements.txt
+COPY ./requirements/install.txt requirements.txt
 RUN pip install -r requirements.txt
 
-COPY ./src/ /usr/src/app
+COPY ./src/ /app/src
+COPY ./tests/ /app/tests
 
 
 # add entrypoint.sh
-COPY ./entrypoint.sh /usr/src/app/entrypoint.sh
-RUN chmod +x /usr/src/app/entrypoint.sh
+COPY ./entrypoint.sh /app/entrypoint.sh
+RUN chmod +x /app/entrypoint.sh
 
 # add app
 
 # run server
-CMD ["/usr/src/app/entrypoint.sh"]
+CMD ["/app/entrypoint.sh"]
