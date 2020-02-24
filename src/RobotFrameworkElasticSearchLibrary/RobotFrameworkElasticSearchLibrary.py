@@ -27,8 +27,8 @@ class RobotFrameworkElasticSearchLibrary(object):
         except Exception as e:
             raise Exception(f'Connect to Elasticsearch error: {e}')
 
-    @keyword("Disconnect From Elasticsearch")
-    def disconnect_from_elasticsearch(self, alias: str = None) -> None:
+    @keyword("Disconnect Elasticsearch")
+    def disconnect_elasticsearch(self, alias: str = None) -> None:
         if alias:
             self._connection = self._cache.switch(alias)
             self._connection = None
