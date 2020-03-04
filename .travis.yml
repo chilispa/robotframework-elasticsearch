@@ -30,12 +30,10 @@ script:
 after_script:
   - docker-compose down
 
-
-#
-#deploy:
-#  provider: pypi
-#  user: ...
-#  password: ...
-#  skip_existing: true
-#  on:
-#    tags: true
+deploy:
+  provider: pypi
+  user: $PYPI_USERNAME
+  password: $PYPI_PASSWORD
+  skip_existing: true
+  on:
+    tags: true
