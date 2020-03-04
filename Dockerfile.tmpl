@@ -17,9 +17,7 @@ COPY ./tests/ /app/tests
 
 # add entrypoint.sh
 COPY ./entrypoint.sh /app/entrypoint.sh
-RUN chmod +x /app/entrypoint.sh
-
 # add app
 
 # run server
-CMD tail -f /dev/null
+ENTRYPOINT ["/app/entrypoint.sh"]

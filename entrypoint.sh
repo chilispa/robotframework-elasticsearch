@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/sh
 echo "Waiting for elastic..."
 
 while ! nc -z elasticsearch 9200; do
@@ -6,3 +6,5 @@ while ! nc -z elasticsearch 9200; do
 done
 
 echo "elastic started"
+
+exec "$@"

@@ -24,10 +24,10 @@ install:
 
 before_script:
   - docker-compose up -d --build
-  - docker-compose exec robot python tests/pre_data/pre_data.py
+  - docker-compose run --rm robot python tests/pre_data/pre_data.py
 
 script:
-  - docker-compose exec robot robot --pythonpath src tests
+  - docker-compose run --rm robot robot --pythonpath src tests
 
 after_script:
   - docker-compose down
