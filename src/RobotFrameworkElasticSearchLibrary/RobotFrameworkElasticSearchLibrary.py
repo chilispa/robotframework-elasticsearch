@@ -1,4 +1,3 @@
-
 from typing import Dict, Optional
 
 from elasticsearch import Elasticsearch, NotFoundError
